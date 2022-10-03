@@ -1,15 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from "react-redux";
+import { createBrowserHistory } from "history";
+
+import configureStore from "./saga/main";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+declare global {
+  interface Window {
+      INITIAL_REDUX_STATE: any;
+  }
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+const history = createBrowserHistory()
+
+const initialState = window.INITIAL_REDUX_STATE;
+
+const store = configureStore(history, initialState)
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
