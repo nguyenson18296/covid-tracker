@@ -6,7 +6,8 @@ export async function fetchAPI(path: string, method: TMETHOD, data?: any): Promi
     const res = await fetch(`${BASE_URL}/${path}`, {
         method,
         headers: {
-          Accept: 'application/json'
+          Accept: 'application/json',
+          Authorization: "Basic Y29yb25hOlpVYXY0dmF3ekNmTWNNWEhWOEI=",
         },
         body: JSON.stringify(data)
       })
